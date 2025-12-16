@@ -317,8 +317,8 @@ class ContentOrchestrator {
           id: content.id,
           topic: content.topic,
           niche: content.niche,
-          title: content.seoMetadata.title,
-          description: content.seoMetadata.description,
+          title: content.seoMetadata?.title || content.topic || 'Untitled',
+          description: content.seoMetadata?.description || '',
           voiceover: content.voiceover,
           createdAt: content.metadata.createdAt
         }
