@@ -21,7 +21,7 @@ router.get('/youtube', asyncHandler(async (req, res) => {
 
   const trends = await trendService.discoverYouTubeTrends({
     regionCode,
-    maxResults: parseInt(maxResults),
+    maxResults: parseInt(maxResults, 10) || 20,
     videoCategoryId
   });
 
@@ -49,7 +49,7 @@ router.get('/search', asyncHandler(async (req, res) => {
   logger.info('API: Keyword search requested', { keywords });
 
   const videos = await trendService.searchTrendingKeywords(keywords, {
-    maxResults: parseInt(maxResults),
+    maxResults: parseInt(maxResults, 10) || 10,
     order
   });
 

@@ -56,8 +56,8 @@ module.exports = {
   },
   
   content: {
-    minVideoDuration: parseInt(process.env.MIN_VIDEO_DURATION) || 60,
-    maxVideoDuration: parseInt(process.env.MAX_VIDEO_DURATION) || 600,
+    minVideoDuration: parseInt(process.env.MIN_VIDEO_DURATION, 10) || 60,
+    maxVideoDuration: parseInt(process.env.MAX_VIDEO_DURATION, 10) || 600,
     targetAudience: process.env.TARGET_AUDIENCE || 'general',
     contentNiche: process.env.CONTENT_NICHE || 'technology'
   },
@@ -68,8 +68,8 @@ module.exports = {
   },
   
   rateLimit: {
-    windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 900000,
-    maxRequests: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100
+    windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS, 10) || 900000,
+    maxRequests: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS, 10) || 100
   },
   
   n8n: {

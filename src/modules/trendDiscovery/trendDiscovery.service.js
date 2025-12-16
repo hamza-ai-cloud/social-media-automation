@@ -38,9 +38,9 @@ class TrendDiscoveryService {
         description: item.snippet.description,
         channelTitle: item.snippet.channelTitle,
         publishedAt: item.snippet.publishedAt,
-        viewCount: parseInt(item.statistics.viewCount),
-        likeCount: parseInt(item.statistics.likeCount),
-        commentCount: parseInt(item.statistics.commentCount),
+        viewCount: parseInt(item.statistics.viewCount || '0', 10),
+        likeCount: parseInt(item.statistics.likeCount || '0', 10),
+        commentCount: parseInt(item.statistics.commentCount || '0', 10),
         duration: item.contentDetails.duration,
         tags: item.snippet.tags || [],
         categoryId: item.snippet.categoryId

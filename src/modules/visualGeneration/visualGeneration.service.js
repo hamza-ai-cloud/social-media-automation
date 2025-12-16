@@ -120,7 +120,7 @@ Make it suitable for faceless content - no people on camera, focus on visuals, t
         } else if (lowerLine.startsWith('duration:')) {
           const durationMatch = line.match(/(\d+)/);
           if (durationMatch) {
-            scene.duration = parseInt(durationMatch[1]);
+            scene.duration = parseInt(durationMatch[1], 10);
           }
         } else if (lowerLine.startsWith('notes:')) {
           scene.notes = line.replace(/^notes:\s*/i, '').trim();
