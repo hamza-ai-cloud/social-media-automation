@@ -1,3 +1,7 @@
+// Mock environment variables
+process.env.OPENAI_API_KEY = 'test-key';
+process.env.YOUTUBE_API_KEY = 'test-key';
+
 const {
   sanitizeFilename,
   formatDuration,
@@ -11,7 +15,7 @@ describe('Utility Functions', () => {
   describe('sanitizeFilename', () => {
     test('should sanitize filename with special characters', () => {
       const result = sanitizeFilename('Test File!@#$%^&*().mp3');
-      expect(result).toBe('test_file___________.mp3');
+      expect(result).toBe('test_file__________.mp3');
     });
 
     test('should handle alphanumeric filenames', () => {

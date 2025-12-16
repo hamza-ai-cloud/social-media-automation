@@ -55,7 +55,7 @@ function validateEnvVars(requiredVars) {
  * Sanitize filename
  */
 function sanitizeFilename(filename) {
-  return filename.replace(/[^a-z0-9_-]/gi, '_').toLowerCase();
+  return filename.replace(/[^a-z0-9._-]/gi, '_').toLowerCase();
 }
 
 /**

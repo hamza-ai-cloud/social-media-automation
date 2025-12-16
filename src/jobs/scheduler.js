@@ -197,12 +197,13 @@ class JobScheduler {
           niche: config.content.contentNiche,
           autoDiscoverTrend: true
         });
-      case 'contentPosting':
+      case 'contentPosting': {
         const content = this.generatedContent?.[this.generatedContent.length - 1];
         if (content) {
           return await this.orchestrator.publishContent(content, ['instagram']);
         }
         break;
+      }
       default:
         throw new Error(`Unknown job: ${jobName}`);
     }
@@ -214,7 +215,7 @@ class JobScheduler {
   getJobStatus() {
     const status = {};
 
-    for (const [name, job] of this.jobs) {
+    for (const [name] of this.jobs) {
       status[name] = {
         running: true,
         schedule: this.getScheduleForJob(name)
