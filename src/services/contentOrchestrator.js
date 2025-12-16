@@ -181,11 +181,13 @@ class ContentOrchestrator {
    * Repurpose for Instagram
    */
   async repurposeForInstagram(content) {
-    const caption = `${content.seoMetadata.description.split('\n')[0]}\n\n${content.seoMetadata.hashtags.slice(0, 10).join(' ')}`;
+    const description = content.seoMetadata?.description || '';
+    const hashtags = content.seoMetadata?.hashtags || [];
+    const caption = `${description.split('\n')[0]}\n\n${hashtags.slice(0, 10).join(' ')}`;
     
     return {
       caption: caption.substring(0, 2200),
-      hashtags: content.seoMetadata.hashtags.slice(0, 30),
+      hashtags: hashtags.slice(0, 30),
       aspectRatio: '9:16',
       duration: 60, // Instagram Reels max
       visualStyle: 'vertical'
@@ -196,11 +198,11 @@ class ContentOrchestrator {
    * Repurpose for TikTok
    */
   async repurposeForTikTok(content) {
-    const caption = content.seoMetadata.title;
+    const caption = content.seoMetadata?.title || content.topic || 'Video';
     
     return {
       caption: caption.substring(0, 150),
-      hashtags: content.seoMetadata.hashtags.slice(0, 10),
+      hashtags: (content.seoMetadata?.hashtags || []).slice(0, 10),
       aspectRatio: '9:16',
       duration: 60,
       visualStyle: 'vertical-dynamic'
@@ -211,9 +213,12 @@ class ContentOrchestrator {
    * Repurpose for Facebook
    */
   async repurposeForFacebook(content) {
+    const description = content.seoMetadata?.description || content.topic || '';
+    const hashtags = content.seoMetadata?.hashtags || [];
+    
     return {
-      message: content.seoMetadata.description.substring(0, 5000),
-      hashtags: content.seoMetadata.hashtags.slice(0, 15),
+      message: description.substring(0, 5000),
+      hashtags: hashtags.slice(0, 15),
       visualStyle: 'square'
     };
   }
@@ -222,11 +227,15 @@ class ContentOrchestrator {
    * Repurpose for LinkedIn
    */
   async repurposeForLinkedIn(content) {
-    const professionalTone = `${content.seoMetadata.title}\n\n${content.seoMetadata.description.split('\n').slice(0, 3).join('\n')}`;
+    const title = content.seoMetadata?.title || content.topic || 'Professional Content';
+    const description = content.seoMetadata?.description || '';
+    const descriptionLines = description.split('\n').slice(0, 3).join('\n');
+    const professionalTone = `${title}\n\n${descriptionLines}`;
+    const hashtags = content.seoMetadata?.hashtags || [];
     
     return {
       text: professionalTone.substring(0, 3000),
-      hashtags: content.seoMetadata.hashtags.slice(0, 5),
+      hashtags: hashtags.slice(0, 5),
       visualStyle: 'professional'
     };
   }
